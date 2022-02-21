@@ -49,6 +49,7 @@ data class UnusedDependencies(
   suspend fun get(configurationName: ConfigurationName): Set<UnusedDependency> {
 
     return delegate.getOrPut(configurationName) {
+
       val dependencies = project.projectDependencies[configurationName]
         ?: return@getOrPut emptySet()
 
@@ -63,6 +64,7 @@ data class UnusedDependencies(
         // without this, every project will report itself as unused.
         .filterNot { cpd -> cpd.project.path == project.path }
         .filterAsync { cpd ->
+
           !project.uses(cpd) && !neededForScopes.await().contains(cpd.project)
         }
         .map { cpd ->
