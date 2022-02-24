@@ -1,5 +1,6 @@
 [![Maven Central](https://img.shields.io/maven-central/v/com.rickbusarow.modulecheck/modulecheck-api?style=flat-square)](https://search.maven.org/search?q=com.rickbusarow.modulecheck)
 [![Gradle Plugin Portal](https://img.shields.io/gradle-plugin-portal/v/com.rickbusarow.module-check?style=flat-square)](https://plugins.gradle.org/plugin/com.rickbusarow.module-check)
+[![Sonatype Nexus (Snapshots)](https://img.shields.io/nexus/s/com.rickbusarow.modulecheck/modulecheck-api?label=snapshots&server=https%3A%2F%2Foss.sonatype.org&style=flat-square)](https://oss.sonatype.org/#nexus-search;quick~com.rickbusarow.modulecheck)
 [![License](https://img.shields.io/badge/license-apache2.0-blue?style=flat-square.svg)](https://opensource.org/licenses/Apache-2.0)
 
 
@@ -15,6 +16,8 @@ All inspection is done using Gradle build files, Java/Kotlin source, and `res` x
 
 Documentation is at [https://rbusarow.github.io/ModuleCheck](https://rbusarow.github.io/ModuleCheck/).
 
+For snapshots, use the "next" version for documentation: https://rbusarow.github.io/ModuleCheck/docs/next/
+
 ![Diagram of flattening module structure](website/static/img/modulecheck_diagram.png)
 
 ### Config
@@ -24,6 +27,8 @@ Documentation is at [https://rbusarow.github.io/ModuleCheck](https://rbusarow.gi
 pluginManagement {
   repositories {
     gradlePluginPortal()
+    // Add for SNAPSHOT builds
+    maven("https://oss.sonatype.org/content/repositories/snapshots/")
   }
 }
 ```
@@ -41,6 +46,10 @@ plugins {
 all checks
 ```shell
 ./gradlew moduleCheck
+```
+all checks with auto-correct
+```shell
+./gradlew moduleCheckAuto
 ```
 
 ## License
